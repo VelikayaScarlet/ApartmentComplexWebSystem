@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}扫脸{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <h3>扫脸</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <header class="panel-heading">
+                你在看着他们，老大哥在看着你
+                <span class="tools pull-right">
+                    <a href="javascript:" class="fa fa-chevron-down"></a>
+                    <a href="javascript:" class="fa fa-times"></a>
+                </span>
+            </header>
+                    <div class="panel-body">
+                        <a href="{{ url_for('monitor.detect_face_le', le_type='入') }}">进入扫脸</a>
+                        <a href="{{ url_for('monitor.detect_face_le', le_type='出') }}">外出扫脸</a>
+                    </div>
+                <br>
+            <span class="msg"> {{ msg }} </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

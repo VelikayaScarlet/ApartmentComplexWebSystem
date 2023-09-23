@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}通知单页浏览{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <h3>通知单页浏览</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <header class="panel-heading">
+                    {{ a.title }}
+                    {{ a.create_time }}
+                    <span class="tools pull-right">
+                        <a href="javascript:" class="fa fa-chevron-down"></a>
+                        <a href="javascript:" class="fa fa-times"></a>
+                    </span>
+                </header>
+                    <div class="panel-body">
+                        <h5>{{ a.content|safe }}</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

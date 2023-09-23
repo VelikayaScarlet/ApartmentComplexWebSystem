@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}业主信息{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="profile-pic text-center">
+                                        <img alt="" src="{{ url_for('static', filename='photos/resident/'+resident.photo+'.png') }}" height="150" width="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <ul class="p-info">
+                                        <li>
+                                            <div class="title">姓名</div>
+                                            <div class="desk">{{ resident.name }}</div>
+                                        </li>
+                                        <li>
+                                            <div class="title">居住位置</div>
+                                            <div class="desk">{{ resident.building }}#{{ resident.room }}</div>
+                                        </li>
+                                        <li>
+                                            <div class="title">联系电话</div>
+                                            <div class="desk">{{ resident.phone_num }}</div>
+                                        </li>
+                                        <li>
+                                            <div class="title">所属单位</div>
+                                            <div class="desk">{{ resident.workplace }}</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body p-states">
+                                    <div class="summary pull-left">
+                                        <h3>同住人员</h3><br>
+                                        <h4>{{ resident.name }}的同住人员为{{ family|length-1}}人</h4>
+                                        {% for p in family %}
+                                        {% if p.name!=resident.name %}<div class="desk">{{ p.name }}</div>{% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div id="expense" class="chart-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="profile-desk">
+                                        <h1>{{ resident.name }}的出入记录(最多显示10条)</h1>
+                                        <span class="designation"></span>
+                                        <table class="table table-striped table-hover table-bordered dataTable" id="editable-sample" aria-describedby="editable-sample_info">
+                                          <thead>
+                                            <tr>
+                                                <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="First Name" style="width: 100px;">进出类型</th>
+                                                <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="First Name" style="width: 200px;">时间</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                          {% for r in records %}
+                                            <tr class="even">
+                                              <td>{{ r.le_type }}</td>
+
+                                              <td>{{ r.time }}</td>
+                                            </tr>
+                                           {% endfor %}
+                                          </tbody>
+                                        </table>
+
+                                        <ul class="p-social-link pull-right">
+                                            <li>
+                                                <a href="https://space.bilibili.com/23297003">
+                                                    <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="https://weibo.com/u/1290573114">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.zhihu.com/people/velikaya-scarlet">
+                                                    <i class="fa fa-google-plus"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <form>
+                                    <textarea class="form-control input-lg p-text-area" rows="2" placeholder="下顿吃点啥?"></textarea>
+                                </form>
+                                <footer class="panel-footer">
+                                    <button class="btn btn-post pull-right">点了也没用</button>
+                                    <ul class="nav nav-pills p-option">
+                                        <li>
+                                            <a href="#"><i class="fa fa-user"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-camera"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa  fa-location-arrow"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-meh-o"></i></a>
+                                        </li>
+                                    </ul>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+{% endblock %}

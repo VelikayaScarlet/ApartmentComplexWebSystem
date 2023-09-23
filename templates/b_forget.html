@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="Zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>找回密码</title>
+  <!-- Link CSS -->
+  <link rel="stylesheet" href="../static/css/style1.css">
+</head>
+<body>
+	<div class="main">
+		<div class="top">
+            <div class="header"> <h1 class="logo"><a href="#"><img src="../static/img/sus.png" alt=""></a></h1></div>
+			<h2>找回密码</h2>
+			<h3>怎么能忘呢？</h3>
+		</div>
+		<div class="recruit">
+			<h4>找回密码</h4>
+			<form method="POST">
+                    <div class="field1">
+					<input type="text" name="phone_num" required>
+					<span class="label">注册时的手机号</span>
+                    </div>
+                    <div class="field1">
+                        <input type="password" name="captcha" required>
+                        <span class="label">验证码</span>
+                    </div>
+                    <div class="field1">
+                        <button type="submit"><a class="sign">继续</a></button>
+                    </div>
+                    <div>
+                        <p class="error-msg" style="">{{ error_msg }}</p>
+                    </div>
+                </form>
+		</div>
+	</div>
+
+</body>
+</html>

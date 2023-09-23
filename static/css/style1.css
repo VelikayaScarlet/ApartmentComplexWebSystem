@@ -1,0 +1,285 @@
+html{
+	box-sizing: border-box;
+	font-size: 15px;
+}
+
+*,*:before, *:after{
+	box-sizing: inherit;
+}
+
+body,h1,h2,h3{
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+
+.error-msg {
+    position: absolute;
+    left: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: red;
+    white-space: pre-wrap;
+    text-align: left;
+}
+.success-msg {
+    position: absolute;
+    left: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: green;
+    white-space: pre-wrap;
+    text-align: left;
+}
+.msg {
+    position: absolute;
+    left: 10px;
+    margin-top: 10px;
+    font-size: 30px;
+    color: red;
+    white-space: pre-wrap;
+    text-align: left;
+}
+a{
+    text-decoration: none;//取消下划线
+}
+a:hover{TEXT-DECORATION:underline}
+
+body{
+	background-color: #3c5b9a;
+	padding: 4rem;
+	font-family: tahoma;
+}
+
+.main{
+	width: 100%;
+	height: 800px;
+	background-color: #e9eaef;
+	box-shadow: 0 0 20px #143477;
+}
+
+.top{
+	background-color: #3c5b9a;
+}
+
+.header{
+	display: flex;
+	justify-content: space-between;
+}
+
+.logo{
+	padding-left: 20px;
+	padding-top: 20px;
+}
+
+
+
+h2{
+	color: white;
+	text-align: center;
+	font-size: 2rem;
+	padding: 70px 0 25px;
+
+}
+
+h3{
+	color: white;
+	text-align: center;
+	font-size: 1rem;
+	padding-bottom: 140px;
+
+}
+
+.recruit{
+	width: 400px;
+	height: 340px;
+	margin: auto;
+	background-color: white;
+	position: relative;
+	top: -71px;
+	padding: 25px;
+}
+
+.login{
+	width: 400px;
+	height: 340px;
+	margin: auto;
+	background-color: white;
+	position: relative;
+	top: -90px;
+	padding: 32px;
+}
+
+.login h4{
+	color: gray;
+	font-size: 1.2rem;
+}
+.error{
+	font-size: 0.5rem;
+	color:red;
+}
+.login .field1{
+	margin-top: 30px;
+	position: relative;
+}
+.login .field2{
+	margin-top: 25px;
+	position: relative;
+}
+.login h4{
+	color: gray;
+	font-size: 1.2rem;
+}
+
+.recruit .field1{
+	margin-top: 40px;
+	position: relative;
+}
+.recruit .field2{
+	margin-top: 30px;
+	position: relative;
+}
+.recruit .input{
+	display: block;
+	width: 100%;
+	border: none;
+	outline: none;
+	border-bottom: 1px solid #999;
+	color: gray;
+	font-size: 1rem;
+}
+.recruit input{
+	display: block;
+	width: 100%;
+	border: none;
+	outline: none;
+	border-bottom: 1px solid #999;
+	color: gray;
+	font-size: 1rem;
+}
+
+.login button{
+	display: block;
+	width: 100%;
+	outline: none;
+	background-color: #4277b2;
+	border: 1px solid #29487d;
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
+	padding: 10px;
+}
+.recruit button{
+	display: block;
+	width: 100%;
+	outline: none;
+	background-color: #4277b2;
+	border: 1px solid #29487d;
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
+	padding: 10px;
+	margin-top: 15px;
+}
+
+.login .label{
+	position: absolute;
+	pointer-events: none;
+	left: 0;
+	top: 0;
+	transition: 0.2s ease all;
+	color: #757575;
+}
+.recruit .label{
+	position: absolute;
+	pointer-events: none;
+	left: 0;
+	top: 0;
+	transition: 0.2s ease all;
+	color: #757575;
+}
+
+.sign{
+	color: white;
+}
+.sign:hover{
+	color:yellowgreen;
+}
+
+.login input:focus ~ .label,
+.login input:not(:focus):valid ~ .label{
+	top: -17px;
+	font-size: .8rem;
+	opacity: 1;
+}
+.recruit input:focus ~ .label,
+.recruit input:not(:focus):valid ~ .label{
+	top: -17px;
+	font-size: .8rem;
+	opacity: 1;
+}
+
+.container-profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: Arial, sans-serif;
+	background-color: #f9f9f9;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	width: 400px;
+}
+
+h1 {
+	margin-top: 0;
+	font-size: 28px;
+	text-align: center;
+	color: #333;
+}
+
+.profile-pic {
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	margin-bottom: 20px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	color: #666;
+}
+
+.info p {
+	margin: 5px 0;
+	font-size: 16px;
+}
+
+.info i {
+	margin-right: 5px;
+	color: #999;
+	font-size: 16px;
+}
+
+.info a {
+	color: #333;
+	text-decoration: none;
+	transition: all 0.3s ease-in-out;
+	font-size: 14px;
+}
+
+.info a:hover {
+	color: #007bff;
+}
+
+#mapid {
+	height: 500px;
+	width: 600px;
+}
+
+

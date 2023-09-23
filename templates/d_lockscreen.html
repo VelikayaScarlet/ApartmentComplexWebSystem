@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>锁屏界面</title>
+
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/style1.css" rel="stylesheet">
+    <link href="../static/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js"></script>
+    <script src="../static/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="lock-screen">
+    <div></div>
+    <div class="lock-wrapper">
+        <div class="panel lock-box text-center">
+            <br><br>
+            <img alt="lock avatar" src="../static/img/baoan.png">
+            <div class="locked">
+                <i class="fa fa-lock"></i>
+            </div>
+            <h1>{{ g.name }}</h1>
+            <div class="row">
+                <form action="" class="form-inline" role="form" method="post">
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <input name="password" type="password" class="form-control lock-input" placeholder="输入密码以返回" required>
+                        <button type="submit" class="btn btn-lock pull-right">
+                            <i class="fa fa-check"></i>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+            <div>
+                <p class="error-msg" style="">{{ error_msg }}</p>
+            </div>
+            <br>
+        </div>
+    </div>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="../static/js/jquery-1.10.2.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/modernizr.min.js"></script>
+<script type="text/javascript">
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+    });
+</script>
+</body>
+</html>

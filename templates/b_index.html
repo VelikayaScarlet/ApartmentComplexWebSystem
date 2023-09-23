@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}主面板{% endblock %}
+{% block head %}
+  <link href="{{ url_for('static', filename='css/style-index.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+
+    <section class="panel">
+    <header class="panel-heading custom-tab turquoise-tab">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#about3">
+                        <i class="fa fa-user"></i>
+                        最近出入的访客
+                    </a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#contact3">
+                        <i class="fa fa-envelope-o"></i>
+                        最近的消息
+                    </a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#announcement3">
+                        <i class="fa fa-list-alt"></i>
+                        最近的通知
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#home3">
+                        <i class="fa fa-home"></i>
+                        最近出入的住户
+                    </a>
+                </li>
+            </ul>
+        </header>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div id="about3" class="tab-pane active">
+                    <div class="index-container">
+                        <div class="index-container">
+                        <div class="index-carousel">
+                            {% for i in range(5) %}
+                          <div class="index-person" style="display: inline-block">
+                            {% if fpv[i].name!='未知人员' %}
+                            <img src="{{ url_for('static', filename='photos/visitor/' ~ fpv[i].name ~ fv[i] ~ '.png') }}" alt="Person 1">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='img/unknown.png') }}" alt="Person 1">
+                             {% endif %}
+                            <h3>{{ fpv[i].name }}</h3>
+                            <p>{{ fpv[i].time }}</p>
+                            <p>访客</p>
+                            <p>{{ fpv[i].le_type }}</p>
+                          </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div id="contact3" class="tab-pane ">
+                    <img src="../static/img/xism.jpg" alt="" width="1235">
+                </div>
+                <div id="announcement3" class="tab-pane ">
+                    <h3 style="font-family: 楷体">{{ la.title }}——{{ la.create_time }}</h3>
+                    {{ la.content|safe }}
+                </div>
+                <div id="home3" class="tab-pane ">
+                    <div class="index-carousel">
+                            {% for i in range(5) %}
+                          <div class="index-person" style="display: inline-block">
+                            {% if fr[i].name!='未知人员' %}
+                            <img src="{{ url_for('static', filename='photos/resident/' ~ fr[i].name ~ fp[i] ~ '.png') }}" alt="Person 1">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='img/unknown.png') }}" alt="Person 1">
+                             {% endif %}
+                            <h3>{{ fr[i].name }}</h3>
+                            <p>{{ fr[i].time }}</p>
+                            <p>{{ fr[i].person_type }}</p>
+                            <p>{{ fr[i].le_type }}</p>
+                          </div>
+                            {% endfor %}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

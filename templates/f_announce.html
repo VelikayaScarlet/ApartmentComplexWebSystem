@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}发布通知{% endblock %}
+
+{% block head %}
+    <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <h3>发布通知</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <header class="panel-heading">
+                    CKEditor
+                    <span class="tools pull-right">
+                        <a href="javascript:" class="fa fa-chevron-down"></a>
+                        <a href="javascript:" class="fa fa-times"></a>
+                    </span>
+                </header>
+                    <div class="panel-body">
+                        <div class="warpper" style="width: auto; margin: auto;">
+                            <form method="post">
+                                {{ form.csrf_token }}
+                                {{ form.title.label }}<br>
+                                {{ form.title }}<br><br>
+                                {{ form.content.label }}<br>
+                                {{ form.content }}
+                                <br>
+                                {{ form.submit }}
+                            </form>
+                        </div>
+                        {{ ckeditor.load() }}
+                        {{ ckeditor.config(name='content') }}
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}LeafLet地图{% endblock %}
+
+{% block head %}
+    <link href="https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.3/leaflet.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
+{% endblock %}
+
+{% block body %}
+	<div class="wrapper">
+    <h3>标记点</h3>
+    <div class="panel-body">
+        <form id="mapmark" method="post" action="{{ url_for('others.map_add_mark') }}">
+          <label for="latitude">经度:</label>
+          <input type="text" id="latitude" name="latitude" required>
+
+          <label for="longitude">纬度:</label>
+          <input type="text" id="longitude" name="longitude" required>
+
+          <label for="content">内容:</label>
+          <input type="text" id="content" name="content" required>
+          <button type="submit" class="btn-primary btn-sm">提交</button>
+        </form>
+
+        <form id="mapmarkdelete" method="post" action="{{ url_for('others.map_delete_mark') }}">
+          <label for="latitudedelete"></label>
+          <input type="text" id="latitudedelete" name="latitudedelete" required hidden>
+
+          <label for="longitudedelete"></label>
+          <input type="text" id="longitudedelete" name="longitudedelete" required hidden>
+
+          <label for="contentdelete">内容:</label>
+          <input type="text" id="contentdelete" name="contentdelete" required>
+
+          <button type="submit" class="btn-danger btn-sm">删除</button>
+        </form>
+        <div id="mapid" style="height: 500px;"></div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+ $.ajax({
+  url: 'http://127.0.0.1:5000/others/mapmarks2json',
+  method: 'GET',
+  success: function(jmms) {
+    console.log(jmms);
+    var latitudeInput = document.getElementById('latitude');
+    var longitudeInput = document.getElementById('longitude');
+    var latitudeInputDelete = document.getElementById('latitudedelete');
+    var longitudeInputDelete = document.getElementById('longitudedelete');
+    var contentInputDelete = document.getElementById('contentdelete')
+
+    var mymap = L.map('mapid').setView([34.811729, 113.504621], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(mymap);
+
+    var jsonData = JSON.parse(jmms); // 将 JSON 字符串解析为对象
+
+    for (var i = 0; i < jsonData.length; i++) {
+      var item = jsonData[i];
+      var marker = L.marker([item.lat, item.long]).addTo(mymap).bindPopup(item.content).openPopup();
+
+      marker.content = item.content;  // 将content作为自定义属性附加到标记上
+
+      marker.on('click', function(e) {
+        var markerLatLng = e.latlng;
+        latitudeInputDelete.value = markerLatLng.lat.toFixed(6);
+        longitudeInputDelete.value = markerLatLng.lng.toFixed(6);
+        contentInputDelete.value = e.target.content;
+        console.log('点击的坐标：', markerLatLng.lat.toFixed(6), markerLatLng.lng.toFixed(6));
+        console.log('点击的content：', e.target.content);  // 打印出content属性的值
+      });
+    }
+
+
+    function onMapClick(e) {
+      var latlng = e.latlng;
+      var latitude = latlng.lat.toFixed(6);
+      var longitude = latlng.lng.toFixed(6);
+
+      // 将经纬度填充到表单输入框中
+      latitudeInput.value = latitude;
+      longitudeInput.value = longitude;
+
+      console.log('点击的坐标：', latitude, longitude);
+    }
+
+    mymap.on('click', onMapClick);
+  },
+  error: function(error) {
+    console.log('未拿到');
+    console.error(error);
+  }
+});
+
+</script>
+
+
+{% endblock %}

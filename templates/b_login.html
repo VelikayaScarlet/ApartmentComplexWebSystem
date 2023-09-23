@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="Zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>系统登录</title>
+  <!-- Link CSS -->
+  <link rel="stylesheet" href="../static/css/style1.css">
+</head>
+<body>
+	<div class="main">
+		<div class="top">
+            <div class="header"> <h1 class="logo"><a href="#"><img src="../static/img/sus.png" alt=""></a></h1></div>
+			<h2>系统登录</h2>
+			<h3>谁控制了该系统，谁就控制了小区</h3>
+		</div>
+		<div class="recruit">
+			<h4>登录或是<a href="{{ url_for('auth.forget') }}">忘记密码？</a></h4>
+
+			<form method="POST">
+                    <div class="field1">
+					<input type="text" name="name" required>
+					<span class="label">用户名</span>
+                    </div>
+                    <div class="field1">
+                        <input type="password" name="password" required>
+                        <span class="label">密码</span>
+                    </div>
+                    <div class="field1">
+                        <button type="submit"><a class="sign">登录</a></button>
+                    </div>
+                    <div>
+                        <p class="error-msg" style="">{{ error_msg }}</p>
+                    </div>
+                </form>
+		</div>
+	</div>
+
+</body>
+</html>

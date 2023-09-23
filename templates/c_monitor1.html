@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}监控入口1中介{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <h3>监控入口1中介</h3>
+    <p>在前端中，调用的是b_monitor1, 而c_monitor1它本身就只是一个画面，别的什么也没有。只有把它嵌入到正式的页面中(b_monitor1)才能达到预期效果</p>
+        <img src="{{ url_for('monitor.monitor1') }}" alt="" height="500">
+{% endblock %}

@@ -1,0 +1,384 @@
+{% extends "base.html" %}
+
+{% block title %}图表信息总览{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+	<div class="wrapper">
+    <h3>信息总览</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <header class="panel-heading">
+                    小区住户组成
+                    <span class="tools pull-right">
+                        <a href="javascript:" class="fa fa-chevron-down"></a>
+                        <a href="javascript:" class="fa fa-times"></a>
+                    </span>
+                </header>
+                <script src="//cdn.bootcss.com/echarts/4.5.0/echarts.common.js"></script>
+                <div style="display: inline-block">
+                    <div class="panel-body">
+                        <div id="building_info_chart" style="width: 500px;height:400px;"></div>
+                        <script type="text/javascript">
+                            var building_info_chart = echarts.init(document.getElementById('building_info_chart'));
+                            var option = {
+                                    title:{
+                                        text:'住户分布'
+                                    },
+                                    tooltip: {
+                                        trigger: 'item',
+                                        formatter: '{a} <br/>{b}: {c} ({d}%)'
+                                    },
+                                    legend: {
+                                        orient: 'vertical',
+                                        left: 10,
+                                        top: 30,
+                                        data: ['1号楼','2号楼','4号楼','5号楼','9号楼']
+                                    },
+                                    series: [
+                                        {
+                                            name: '居住位置',
+                                            type: 'pie',
+                                            radius: ['50%', '70%'],
+                                            avoidLabelOverlap: false,
+                                            label: {
+                                                show: false,
+                                                position: 'center'
+                                            },
+                                            emphasis: {
+                                                label: {
+                                                    show: true,
+                                                    fontSize: '30',
+                                                    fontWeight: 'bold'
+                                                }
+                                            },
+                                            labelLine: {
+                                                show: false
+                                            },
+                                            data: [
+                                                {value: 33, name: '1号楼'},
+                                                {value: 10, name: '2号楼'},
+                                                {value: 14, name: '4号楼'},
+                                                {value: 15, name: '5号楼'},
+                                                {value: 48, name: '9号楼'}
+                                            ]
+                                        }
+                                    ]
+                                };
+                            building_info_chart.setOption(option);
+                        </script>
+                    </div>
+                </div>
+                <div style="display: inline-block">
+                    <div class="panel-body">
+                        <div id="gender_portion_chart" style="width: 500px;height:400px;"></div>
+                        <script type="text/javascript">
+                            var gender_portion_chart = echarts.init(document.getElementById('gender_portion_chart'));
+                            var option = {
+                                        title:{
+                                            text:'性别比例'
+                                        },
+                                        tooltip: {
+                                            trigger: 'item',
+                                            formatter: '{a} <br/>{b}: {c} ({d}%)'
+                                        },
+                                        legend: {
+                                            orient: 'vertical',
+                                            left: 10,
+                                            top: 30,
+                                            data: ['男','女','其他']
+                                        },
+                                        series: [
+                                            {
+                                                name: '性别',
+                                                type: 'pie',
+                                                radius: ['50%', '70%'],
+                                                avoidLabelOverlap: false,
+                                                label: {
+                                                    show: false,
+                                                    position: 'center'
+                                                },
+                                                emphasis: {
+                                                    label: {
+                                                        show: true,
+                                                        fontSize: '30',
+                                                        fontWeight: 'bold'
+                                                    }
+                                                },
+                                                labelLine: {
+                                                    show: false
+                                                },
+                                                data: [
+                                                    {value: 59, name: '男'},
+                                                    {value: 60, name: '女'},
+                                                    {value: 1, name: '其他'},
+                                                ]
+                                            }
+                                        ]
+                                    };
+                            gender_portion_chart.setOption(option);
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-success">
+            <header class="panel-heading">
+                小区最近人/车流量
+                <span class="tools pull-right">
+                    <a href="javascript:" class="fa fa-chevron-down"></a>
+                    <a href="javascript:" class="fa fa-times"></a>
+                </span>
+            </header>
+            <script src="//cdn.bootcss.com/echarts/4.5.0/echarts.common.js"></script>
+            <div style="display: inline-block">
+                <div class="panel-body">
+                    <div id="car_flow_chart" style="width: 600px; height: 500px;"></div>
+                    <script>
+                        var car_flow_chart = echarts.init(document.getElementById('car_flow_chart'));
+
+                        var option = {
+                            title: {
+                                text: '车流量'
+                            },
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            xAxis: {
+                                type: 'category',
+                                boundaryGap: false,
+                                data: ['5.30', '5.31', '6.1', '6.2', '6.3', '6.4', '6.5']
+                            },
+                            yAxis: {
+                                type: 'value'
+                            },
+                            series: [
+                                {
+                                    name: '本地车辆',
+                                    data: [102, 97, 88, 89, 74, 100, 110],
+                                    type: 'line',
+                                    areaStyle: {}
+                                },
+                                {
+                                    name: '外来车辆',
+                                    data: [30, 25, 18, 20, 15, 35, 40],
+                                    type: 'line',
+                                    areaStyle: {}
+                                }
+                            ]
+                        };
+
+                        car_flow_chart.setOption(option);
+                    </script>
+                </div>
+            </div>
+            <div style="display: inline-block">
+                <div class="panel-body">
+                    <div id="people_flow_chart" style="width: 600px; height: 500px;"></div>
+                    <script>
+                        var people_flow_chart = echarts.init(document.getElementById('people_flow_chart'));
+
+                        var option = {
+                            title: {
+                                text: '人流量'
+                            },
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            xAxis: {
+                                type: 'category',
+                                boundaryGap: false,
+                                data: ['5.30', '5.31', '6.1', '6.2', '6.3', '6.4', '6.5']
+                            },
+                            yAxis: {
+                                type: 'value'
+                            },
+                            series: [
+                                {
+                                    name: '本地人员',
+                                    data: [320, 302, 301, 334, 390, 330, 320],
+                                    type: 'line',
+                                    areaStyle: {}
+                                },
+                                {
+                                    name: '外来人员',
+                                    data: [80, 75, 70, 85, 90, 95, 100],
+                                    type: 'line',
+                                    areaStyle: {}
+                                }
+                            ]
+                        };
+
+                        people_flow_chart.setOption(option);
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <header class="panel-heading">
+                    小区车辆和人员情况
+                    <span class="tools pull-right">
+                        <a href="javascript:" class="fa fa-chevron-down"></a>
+                        <a href="javascript:" class="fa fa-times"></a>
+                    </span>
+                </header>
+                <script src="//cdn.bootcss.com/echarts/4.5.0/echarts.common.js"></script>
+                <div style="display: inline-block">
+                    <div class="panel-body">
+                        <div id="vehicleChart" style="width: 600px; height: 400px;"></div>
+                        <script type="text/javascript">
+                            var insideCars = Math.floor(Math.random() * 50);
+                            var outsideCars = Math.floor(Math.random() * 60);
+                            var tempVehicles = Math.floor(Math.random() * 30);
+
+                            // 绘制当前小区内外车辆图表
+                            var vehicleChart = echarts.init(document.getElementById('vehicleChart'));
+                            var vehicleOption = {
+                                title: {
+                                    text: '小区车辆统计',
+                                    left: 'center',
+                                    textStyle: {
+                                        color: '#333',
+                                        fontSize: 18,
+                                        fontWeight: 'bold'
+                                    }
+                                },
+                                tooltip: {
+                                    trigger: 'item',
+                                    formatter: '{a} <br/>{b}: {c} ({d}%)'
+                                },
+                                legend: {
+                                    orient: 'vertical',
+                                    left: 'left',
+                                    textStyle: {
+                                        color: '#333',
+                                        fontSize: 14
+                                    },
+                                    data: ['小区内车辆', '小区外车辆', '外来车辆']
+                                },
+                                series: [
+                                    {
+                                        name: '车辆',
+                                        type: 'pie',
+                                        radius: ['40%', '60%'],
+                                        center: ['50%', '55%'],
+                                        label: {
+                                            show: true,
+                                            position: 'outside',
+                                            formatter: '{b}: {d}%'
+                                        },
+                                        emphasis: {
+                                            label: {
+                                                show: true,
+                                                fontSize: '14',
+                                                fontWeight: 'bold'
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: true
+                                        },
+                                        itemStyle: {
+                                            borderRadius: 4,
+                                            borderColor: '#fff',
+                                            borderWidth: 2
+                                        },
+                                        data: [
+                                            {value: insideCars, name: '小区内车辆'},
+                                            {value: outsideCars, name: '小区外车辆'},
+                                            {value: tempVehicles, name: '外来车辆'}
+                                        ]
+                                    }
+                                ]
+                            };
+                            vehicleChart.setOption(vehicleOption);
+                        </script>
+                    </div>
+                </div>
+                <div style="display: inline-block">
+                    <div class="panel-body">
+                            <div id="residentChart" style="width: 600px; height: 400px;"></div>
+                            <script>
+                                // 随机生成示例数据
+                                var insideResidents = Math.floor(Math.random() * 120);
+                                var outsideResidents = Math.floor(Math.random() * 180);
+                                var visitors = Math.floor(Math.random() * 20);
+
+                                // 绘制当前小区内外人员图表
+                                var residentChart = echarts.init(document.getElementById('residentChart'));
+                                var residentOption = {
+                                    title: {
+                                        text: '小区人员统计',
+                                        left: 'center',
+                                        textStyle: {
+                                            color: '#333',
+                                            fontSize: 18,
+                                            fontWeight: 'bold'
+                                        }
+                                    },
+                                    tooltip: {
+                                        trigger: 'item',
+                                        formatter: '{a} <br/>{b}: {c} ({d}%)'
+                                    },
+                                    legend: {
+                                        orient: 'vertical',
+                                        left: 'left',
+                                        textStyle: {
+                                            color: '#333',
+                                            fontSize: 14
+                                        },
+                                        data: ['小区内住户', '小区外住户', '外来人员']
+                                    },
+                                    series: [
+                                        {
+                                            name: '人员',
+                                            type: 'pie',
+                                            radius: ['40%', '60%'],
+                                            center: ['50%', '55%'],
+                                            label: {
+                                                show: true,
+                                                position: 'outside',
+                                                formatter: '{b}: {d}%'
+                                            },
+                                            emphasis: {
+                                                label: {
+                                                    show: true,
+                                                    fontSize: '14',
+                                                    fontWeight: 'bold'
+                                                }
+                                            },
+                                            labelLine: {
+                                                show: true
+                                            },
+                                            itemStyle: {
+                                                borderRadius: 4,
+                                                borderColor: '#fff',
+                                                borderWidth: 2
+                                            },
+                                            data: [
+                                                {value: insideResidents, name: '小区内住户'},
+                                                {value: outsideResidents, name: '小区外住户'},
+                                                {value: visitors, name: '外来人员'}
+                                            ]
+                                        }
+                                    ]
+                                };
+                                residentChart.setOption(residentOption);
+                            </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

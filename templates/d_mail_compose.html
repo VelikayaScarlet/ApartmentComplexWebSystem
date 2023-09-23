@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}写邮件{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+        <div class="wrapper">
+            <div class="mail-box">
+                <aside class="mail-nav mail-nav-bg-color">
+                    <header class="header"> <h4>邮箱</h4> </header>
+                    <div class="mail-nav-body">
+                        <div class="text-center">
+                            <a class="btn btn-compose" href="#">
+                                写邮件
+                            </a>
+                        </div>
+                        <ul class="nav nav-pills nav-stacked mail-navigation">
+                            <li><a href="{{ url_for('mail.mail_main') }}"> <i class="fa fa-inbox"></i> 收件箱</a></li>
+                            <li><a href="{{ url_for('mail.sent') }}"> <i class="fa fa-envelope-o"></i> 已发送邮件</a></li>
+                            <li><a href="{{ url_for('mail.draft') }}"> <i class="fa fa-file-text-o"></i> 草稿 </a></li>
+                            <li><a href="{{ url_for('mail.trash') }}"> <i class="fa fa-trash-o"></i> 垃圾箱</a></li>
+                        </ul>
+                      <ul class="nav nav-pills nav-stacked labels-info ">
+                            <li> <h5>最近联系人</h5> </li>
+                            {% for name in recent_name%}
+                            <li> <a href="#"> <i class="fa fa-comments text-success"></i> {{ name }} </a> <p>在南大门</p> </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </aside>
+                <section class="mail-box-info">
+                    <header class="header">
+                        <div class="compose-btn pull-right">
+                        </div>
+                        <div class="btn-toolbar">
+                            <h4 class="pull-left">
+                                写邮件
+                            </h4>
+                        </div>
+                    </header>
+                    <section class="mail-list">
+                        <div class="compose-mail">
+                            <form role="form-horizontal" method="post">
+                                <div class="form-group">
+                                    <label for="to" class="">发送给:</label>
+                                    <input type="text" tabindex="1" id="to" class="form-control" name="receiver_name" value="{{ receiver }}@velikaya.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject" class="">主题:</label>
+                                    <input type="text" tabindex="1" id="subject" class="form-control" name="title" {% if draft_mail is defined %} value="{{ draft_mail.title }}" {% endif %} required>
+                                </div>
+
+                                <div class="compose-editor">
+                                    <textarea class="wysihtml5 form-control" rows="9" name="content" >{% if draft_mail is defined %}{{ draft_mail.content }}{% endif %}</textarea>
+                                </div>
+                                <hr/>
+                                    <div class="compose-btn">
+                                        <button type="submit" class="btn btn-primary btn-sm" name="send"><i class="fa fa-check"></i> 发送</button>
+                                        <button class="btn btn-sm btn-default" name="to_draft">存草稿</button>
+                                    </div>
+                                <div>
+                                    <p class="error-msg" style="">{{ error_msg }}</p>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    <script>
+    var listItems = document.querySelectorAll('.labels-info li');
+    for (var i = 0; i < listItems.length; i++) {
+        listItems[i].addEventListener('click', function() {
+            var name = this.querySelector('a').innerText.trim();
+            document.getElementById('to').value = name+'@velikaya.com';
+        });
+    }
+    </script>
+{% endblock %}

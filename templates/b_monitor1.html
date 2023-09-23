@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}监控入口1{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+    <h3>南门刷脸处监控</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <header class="panel-heading">
+                你在看着他们，老大哥在看着你
+                <span class="tools pull-right">
+                    <a href="javascript:" class="fa fa-chevron-down"></a>
+                    <a href="javascript:" class="fa fa-times"></a>
+                 </span>
+            </header>
+            <div class="panel-body">
+                <img src="{{ url_for('monitor.c_monitor1') }}" alt="" height="500">
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+{% endblock %}

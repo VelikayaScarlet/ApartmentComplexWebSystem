@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}测试页面{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+        <div class="wrapper">
+            <div class="mail-box">
+                <aside class="mail-nav mail-nav-bg-color">
+                    <header class="header"> <h4>邮箱</h4> </header>
+                    <div class="mail-nav-body">
+                        <div class="text-center">
+                            <a class="btn btn-compose" href="{{ url_for('mail.compose') }}">
+                                写邮件
+                            </a>
+                        </div>
+                        <ul class="nav nav-pills nav-stacked mail-navigation">
+                            <li><a href="{{ url_for('mail.mail_main') }}"> <i class="fa fa-inbox"></i> 收件箱</a></li>
+                            <li><a href="{{ url_for('mail.sent') }}"> <i class="fa fa-envelope-o"></i> 已发送邮件</a></li>
+                            <li><a href="{{ url_for('mail.draft') }}"> <i class="fa fa-file-text-o"></i> 草稿</a></li>
+                            <li><a href="{{ url_for('mail.trash') }}"> <i class="fa fa-trash-o"></i> 垃圾箱</a></li>
+                        </ul>
+                    </div>
+                </aside>
+                <section class="mail-box-info">
+                    <header class="header">
+                        <div class="compose-btn pull-right">
+                            </div>
+                        <div class="btn-toolbar">
+                            <h4 class="pull-left">
+                                {{ email.title }}
+                            </h4>
+                        </div>
+                    </header>
+
+                    <section class="mail-list">
+                        <div class="mail-sender">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="../static/img/baoan.png" alt="">
+                                    <strong>{{ email.sender.name }}</strong>
+                                    <span>[{{ email.sender.name }}@velikaya.com]</span>
+                                   发来的 <strong>{{ email.title }}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="date"> {{ email.create_time }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view-mail">
+                        <p>{{ email.content }}</p>
+
+                        </div>
+                        <div class="attachment-mail">
+
+                        </div>
+                        <div class="compose-btn pull-left">
+                            <a href="{{ url_for('mail.compose', receiver=email.sender.name) }}" class="btn btn-sm btn-primary" {% if email.is_trash == 1 %}disabled="disabled"{% endif %}><i class="fa fa-reply"></i>回复</a>
+                            <button class="btn btn-sm btn-default" {% if email.is_trash == 1 %}disabled="disabled"{% endif %}><i class="fa fa-arrow-right"></i>转发</button>
+                            <button id="editable-sample_new" class="btn btn-primary btn-sm" >
+                                <a href="{{ url_for('mail.throw2trash', mail_id=email.id) }}">{% if email.is_trash == 1 %}从垃圾箱移出{% else %}放入垃圾箱{% endif %}</a><i class="fa fa-trash-o"></i>
+                            </button>
+                            <button id="delete_in_trash" class="btn btn-danger btn-sm" {% if email.is_trash == 0 %}style="display:none;" {% endif %}>
+                                <a href="{{ url_for('mail.delete_in_trash', mail_id=email.id) }}">彻底删除</a>
+                            </button>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+HOSTNAME = 'LOCALHOST'
+PORT = 3306
+USERNAME = 'root'
+PASSWORD = 'root'
+DATABASE = 'apartment_complex'
+DB_URI = f'mysql+pymysql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{DATABASE}?charset=utf8'
+SQLALCHEMY_DATABASE_URI = DB_URI
+
+MAIL_SERVER = 'smtp.qq.com'
+MAIL_USE_SSL = True
+MAIL_PORT = 465
+MAIL_USERNAME = '794335638@qq.com'
+MAIL_PASSWORD = "xqbxmcvcupmmbejf"
+MAIL_DEFAULT_SENDER = '794335638@qq.com'
+
+SECRET_KEY = 'abcdefghijklmn'
+
+# CKEditor configuration
+CKEDITOR_SERVE_LOCAL = True
+CKEDITOR_HEIGHT = 400

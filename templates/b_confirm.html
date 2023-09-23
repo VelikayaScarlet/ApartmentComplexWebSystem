@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="Zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>找回密码</title>
+  <!-- Link CSS -->
+  <link rel="stylesheet" href="../static/css/style1.css">
+</head>
+<body>
+	<div class="main">
+		<div class="top">
+            <div class="header"> <h1 class="logo"><a href="#"><img src="../static/img/sus.png" alt=""></a></h1></div>
+			<h2>新的密码</h2>
+			<h3>下次小心</h3>
+		</div>
+		<div class="recruit">
+			<h4>键入</h4>
+			<form method="POST">
+                    <div class="field1">
+                        <input type="password" name="password" required>
+                        <span class="label">密码</span>
+                    </div>
+                    <div class="field1">
+                        <input type="password" name="confirm" required>
+                        <span class="label">确认密码</span>
+                    </div>
+                    <div class="field1">
+                        <button type="submit"><a class="sign">确认</a></button>
+                    </div>
+                    <div>
+                        <p class="error-msg" style="">{{ error_msg }}</p>
+                    </div>
+                </form>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}临时人员登记{% endblock %}
+
+{% block head %}
+    <style>    #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #video,
+        #canvas {
+            width: 266px;
+            height: 200px;
+            margin: 0 10px;
+        }</style>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <h3>访客登记</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <header class="panel-heading">
+                你在看着他们，老大哥在看着你
+                <span class="tools pull-right">
+                    <a href="javascript:" class="fa fa-chevron-down"></a>
+                    <a href="javascript:" class="fa fa-times"></a>
+                </span>
+            </header>
+            <br>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" method="post">
+                            <div class="form-group">
+                                <label for="name" class="col-lg-2 col-sm-2 control-label">访客姓名</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="name" placeholder="填写姓名" name="name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_num" class="col-lg-2 col-sm-2 control-label">访客电话</label>
+                                <div class="col-lg-10">
+                                    <input type="number" class="form-control" id="phone_num" placeholder="填写电话" name="phone_num" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reason" class="col-lg-2 col-sm-2 control-label">来访原因</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="reason" placeholder="填写原因" name="reason" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="submit" class="btn btn-primary" id="submit" disabled>提交</button>
+                                    <button type="button" id="capture" class="btn btn-warning" disabled>拍照</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                 <div id="container">
+                                     <video id="video" width="266" height="200" autoplay></video>
+                                     <canvas id="canvas" width="266" height="200"></canvas>
+
+                                 </div>
+                            </div>
+                            <div>
+                                <p class="msg" style="">{{ msg }}</p>
+                            </div>
+                        </form>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const captureButton = document.getElementById('capture');
+const submitButton = document.getElementById('submit');
+const nameInput = document.getElementById('name');
+const PNInput = document.getElementById('phone_num')
+const reasonInput = document.getElementById('reason')
+const today = new Date();
+const day = today.getDate();
+
+// 请求权限打开摄像头
+navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+        video.srcObject = stream;
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
+// 拍照并显示在Canvas上
+captureButton.addEventListener('click', () => {
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    const a = document.createElement('a');
+    const pnSuffix = PNInput.value.slice(-4); // 获取PNInput.value的后四位
+    a.download = `${nameInput.value}${pnSuffix}.png`; // 拼接文件名
+    a.href = canvas.toDataURL();
+    a.click();
+    submitButton.disabled = false;
+});
+
+// 将Canvas图像转换为Data URL并提交表单
+submitButton.addEventListener('click', () => {
+    const dataURL = canvas.toDataURL();
+    const name = nameInput.value;
+
+    // 在这里编写代码将dataURL和name发送到后端
+    console.log(dataURL, name);
+});
+[nameInput, PNInput, reasonInput].forEach(input => {
+  input.addEventListener('input', () => {
+    const allFilled = nameInput.value.trim() !== '' &&
+                      PNInput.value.trim() !== '' &&
+                      reasonInput.value.trim() !== '';
+    captureButton.disabled = !allFilled;
+  });
+});
+</script>
+<script>
+
+
+</script>
+
+{% endblock %}

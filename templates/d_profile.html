@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}个人主页{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="profile-pic text-center">
+                                        <img alt="" src="../static/img/baoan.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <ul class="p-info">
+                                        <li>
+                                            <div class="title">性别</div>
+                                            <div class="desk">男</div>
+                                        </li>
+                                        <li>
+                                            <div class="title">公司</div>
+                                            <div class="desk">{{ admin.company }}</div>
+                                        </li>
+                                        <li>
+                                            <div class="title">学历</div>
+                                            <div class="desk">{{ admin.edu_bg }}</div>
+                                        </li>
+                                        <li>
+                                            <div class="title">技能</div>
+                                            <div class="desk">{{ admin.skill }}</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body p-states">
+                                    <div class="summary pull-left">
+                                        <h4>本月工资</h4>
+                                        <h3>{{ admin.salary }}</h3>
+                                    </div>
+                                    <div id="expense" class="chart-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="profile-desk">
+                                        <h1>{{ g.name }}</h1>
+                                        <span class="designation">{{admin.title}}</span>
+                                        <p>
+                                           {{ admin.sentence }}
+                                        </p>
+                                        <ul class="p-social-link pull-right">
+                                            <li>
+                                                <a href="https://space.bilibili.com/23297003">
+                                                    <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="https://weibo.com/u/1290573114">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.zhihu.com/people/velikaya-scarlet">
+                                                    <i class="fa fa-google-plus"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <form>
+                                    <textarea class="form-control input-lg p-text-area" rows="2" placeholder="下顿吃点啥?"></textarea>
+                                </form>
+                                <footer class="panel-footer">
+                                    <button class="btn btn-post pull-right">点了也没用</button>
+                                    <ul class="nav nav-pills p-option">
+                                        <li>
+                                            <a href="#"><i class="fa fa-user"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-camera"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa  fa-location-arrow"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-meh-o"></i></a>
+                                        </li>
+                                    </ul>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="ThemeBucket">
+  <link rel="shortcut icon" href="#" type="image/png">
+{#  <link href="../static/css/style.css" rel="stylesheet">#}
+{#  <link href="../static/css/style-responsive.css" rel="stylesheet">#}
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/otherStyle.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='css/style-responsive.css') }}" rel="stylesheet">
+   {% block head %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="{{ url_for('static', filename='js/html5shiv.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/respond.min.js.js') }}"></script>
+    <![endif]-->
+
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <a href="{{ url_for('qa.index') }}"><img src="{{ url_for('static', filename='img/sus_small.png') }}" alt=""></a>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="{{ url_for('qa.index') }}"><img src="{{ url_for('static', filename='img/funny_ideology_dengism_subtype.png') }}" alt=""></a>
+        </div>
+        <!--logo and iconic logo end-->
+
+
+        <div class="left-side-inner">
+
+            <!-- visible to small devices only -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" src="{{ url_for('static', filename='img/baoan.png') }}" class="media-object">
+                    <div class="media-body">
+                        <h4><a href="">{{ g.name }}</a></h4>
+                        <span>碧桂园五星上将</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">账户信息</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a href="{{ url_for('others.profile') }}"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> <span>设置</span></a></li>
+                    <li><a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out"></i> <span>注销</span></a></li>
+                </ul>
+            </div>
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a href="{{ url_for('qa.index') }}"><i class="fa fa-home"></i> <span>主面板</span></a></li>
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>监控界面</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{ url_for('monitor.monitor1') }}"> 监控界面</a></li>
+                        <li><a href="{{ url_for('monitor.detect_face_here') }}"> 扫脸</a></li>
+                        <li><a href="{{ url_for('monitor.detect_vp') }}"> 扫车牌</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-list">  <a href=""><i class="fa fa-bullhorn"></i> <span>通知公告</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{ url_for('others.announce') }}"> 发布通知</a></li>
+                        <li><a href="{{ url_for('others.announcement') }}"> 浏览历史通知</a></li>
+                        <li><a href="{{ url_for('others.announcement_bs') }}"> 通知后台</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-envelope"></i> <span>邮件</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{ url_for('mail.mail_main') }}"> 邮件系统</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>登记</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{ url_for('register.visitor_reg') }}"> 访客登记</a></li>
+                        <li><a href="{{ url_for('register.vehicle_reg') }}"> 外来车辆登记</a></li>
+                        <li><a href="{{ url_for('register.resident_reg') }}"> 新增住户</a></li>
+                        <li><a href="{{ url_for('register.car_reg') }}"> 新增小区内车辆</a></li>
+
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>后台信息</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{ url_for('backstage.resident_bs') }}"> 内部人员后台信息</a></li>
+                        <li><a href="{{ url_for('backstage.visitor_bs') }}"> 外来人员后台信息</a></li>
+                        <li><a href="{{ url_for('backstage.car_bs') }}"> 内部车辆后台信息</a></li>
+                        <li><a href="{{ url_for('backstage.temp_vehicle_bs') }}"> 外来车辆后台信息</a></li>
+                        <li><a href="{{ url_for('backstage.parecord') }}"> 人员进出记录</a></li>
+                        <li><a href="{{ url_for('backstage.varecord') }}"> 车辆进出记录</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>图表</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{ url_for('charts.total_view') }}"> 信息总览</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="#"><i class="fa fa-map-marker"></i> <span>地图</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{ url_for('others.leaflet_map') }}"> LeafLet</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>其他页面</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{ url_for('others.profile') }}"> 个人信息</a></li>
+                        <li><a href="{{ url_for('others.lockscreen') }}"> 锁屏</a></li>
+                        <li><a href="nestable.html"> 今日任务</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>设置</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{ url_for('settings.test') }}"> 测试</a></li>
+                        <li><a href="{{ url_for('settings.blank') }}"> 模板</a></li>
+                        <li><a href="{{ url_for('settings.test200') }}"> 200</a></li>
+                        <li><a href="{{ url_for('settings.test404') }}"> 404</a></li>
+                        <li><a href="{{ url_for('settings.test500') }}"> 500</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            <!--sidebar nav end-->
+
+        </div>
+    </div>
+    <!-- left side end-->
+    
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <div class="header-section">
+
+        <!--toggle button start-->
+        <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+        <!--toggle button end-->
+
+        <!--search start-->
+        <form class="searchform" action="index.html" method="post">
+            <input type="text" class="form-control" name="keyword" placeholder="搜索" />
+        </form>
+        <!--search end-->
+
+        <!--notification menu start -->
+        <div class="menu-right">
+            <ul class="notification-menu">
+                <li>
+                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ url_for('static', filename='img/baoan.png') }}" alt="" />
+                        {{ g.name }}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <button onclick="switchDarkMode()">夜间模式</button>
+                        <li><a href="{{ url_for('others.profile') }}"><i class="fa fa-user"></i>个人信息</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out"></i> 注销</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!--notification menu end -->
+
+        </div>
+        <!-- header section end-->
+
+        <!-- page heading start-->
+
+{#        <div class="page-heading">#}
+{#            <h3>Dashboard</h3>#}
+{#            <ul class="breadcrumb">#}
+{#                <li>#}
+{#                    <a href="#">Dashboard</a>#}
+{#                </li>#}
+{#                <li class="active"> My Dashboard </li>#}
+{#            </ul>#}
+{#        </div>#}
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        {% block body %}{% endblock %}
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+        <footer class="sticky-footer">
+            2023 &copy; made by Velikaya <a href="https://steamcommunity.com/id/lt9981806/" target="_blank">Proletkratie</a>
+        </footer>
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+{#<script src="../static/js/jquery-1.10.2.min.js"></script>#}
+{#<script src="../static/js/jquery-ui-1.9.2.custom.min.js"></script>#}
+{#<script src="../static/js/jquery-migrate-1.2.1.min.js"></script>#}
+{#<script src="../static/js/bootstrap.min.js"></script>#}
+{#<script src="../static/js/modernizr.min.js"></script>#}
+{#<script src="../static/js/jquery.nicescroll.js"></script>#}
+<script src="{{ url_for('static', filename='js/jquery-1.10.2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-migrate-1.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modernizr.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.nicescroll.js') }}"></script>
+<script src="{{ url_for('static', filename='myJS/script.js') }}"></script>
+
+<!--common scripts for all pages-->
+{#<script src="../static/js/scripts.js"></script>#}
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+
+</body>
+</html>

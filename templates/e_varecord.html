@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}车辆进出记录后台界面{% endblock %}
+
+{% block head %}
+  <!--data table-->
+  <link rel="stylesheet" href="../static/js/data-tables/DT_bootstrap.css" />
+
+  <link href="../static/css/style.css" rel="stylesheet">
+  <link href="../static/css/style-responsive.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js"></script>
+    <script src="../static/js/respond.min.js"></script>
+    <![endif]-->
+{% endblock %}
+
+{% block body %}
+
+
+<div class="wrapper">
+    <h3>车辆进出记录</h3>
+<div class="row">
+                <div class="col-sm-12">
+                <section class="panel">
+                <header class="panel-heading">
+                    包括访问人员和住户
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        <a href="javascript:;" class="fa fa-times"></a>
+                     </span>
+                </header>
+                <div class="panel-body" style="display: block;">
+                <div class="adv-table editable-table ">
+                <div class="clearfix">
+
+
+                </div>
+                <div class="space15"></div>
+                <div id="editable-sample_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                    <div class="row"><div class="col-lg-6"></div>
+                        <div class="col-lg-6"><div class="dataTables_filter" id="editable-sample_filter">
+                            <form action="{{ url_for('backstage.varecord_search') }}" method="post">
+                                <div class="col-lg-10">
+                                    <label for="parecord_ctt"></label><input type="text" id="parecord_ctt" placeholder="输入想要搜索的内容" name="ctt" style="padding:0.5em;border-radius:10px;">
+                                    <button type="submit" class="btn btn-primary">搜索</button>
+                                </div>
+                            </form>
+                        <div class="btn-group pull-right">
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">工具 <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="#" onclick="printPage()">打印</a></li>
+                            <li><a href="{{ url_for('backstage.export_varecord') }}" onmouseup="exportToExcel()">导出Excel</a></li>
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover table-bordered dataTable" id="editable-sample" aria-describedby="editable-sample_info">
+                <thead>
+                <tr role="row">
+                   <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="First Name" style="width: 145.4px;">进出记录编号</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" aria-label="Points: activate to sort column ascending" style="width: 142.4px;">进出车辆编号</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 172.4px;">进出车辆牌照</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 172.4px;">进出车辆类型</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" aria-label="Edit: activate to sort column ascending" style="width: 100.4px;">行动</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" aria-label="Delete: activate to sort column ascending" style="width: 146.4px;">时间</th></tr>
+                </thead>
+
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                {% for r in records%}
+                <tr class="even">
+                    <td class="  sorting_1">{{ r.id }} </td>
+                    <td class=" "> {{ r.vehicle_id }}</td>
+                    <td class=" ">{{ r.vp }}</td>
+                    <td class="center ">{{ r.vehicle_type }}</td>
+                    <td class="center ">{{ r.le_type }}</td>
+                    <td class=" ">{{ r.time }}</td>
+
+                </tr>
+                {% endfor %}
+                </tbody></table>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="dataTables_info" id="editable-sample_info">当前共有{{ records|length }}条记录
+                            </div>
+                        </div>
+                    <div class="col-lg-6"><div class="dataTables_paginate paging_bootstrap pagination">
+                        </div></div></div></div>
+                </div>
+                </div>
+                </section>
+                </div>
+                </div>
+</div>
+<!--data table-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/data-tables/jquery.dataTables.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/data-tables/DT_bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/data-tables/editable-table.js') }}"></script>
+
+
+
+<!--script for editable table-->
+<script src="../static/js/editable-table.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function() {
+        EditableTable.init();
+    });
+
+</script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}邮箱{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+            <div class="mail-box">
+                <aside class="mail-nav mail-nav-bg-color">
+                    <header class="header"> <h4>邮箱</h4> </header>
+                    <div class="mail-nav-body">
+                        <div class="text-center">
+                            <a class="btn btn-compose" href="{{ url_for('mail.compose') }}">
+                                写邮件
+                            </a>
+                        </div>
+                        <ul class="nav nav-pills nav-stacked mail-navigation">
+                            <li><a href="{{ url_for('mail.mail_main') }}"> <i class="fa fa-inbox"></i> 收件箱</a></li>
+                            <li class="active"><a href="{{ url_for('mail.sent') }}"> <i class="fa fa-envelope-o"></i> 已发送邮件<span class="label label-danger pull-right inbox-notification">{{ emails|length }}</span></a></li>
+                            <li><a href="{{ url_for('mail.draft') }}"> <i class="fa fa-file-text-o"></i> 草稿</a></li>
+                            <li><a href="{{ url_for('mail.trash') }}"> <i class="fa fa-trash-o"></i> 垃圾箱</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <section class="mail-box-info">
+                    <header class="header">
+                        <div class="btn-toolbar">
+                            <div class="btn-group">
+                                <a href="{{ url_for('mail.mail_main') }}">
+                                    <button class="btn btn-sm btn-primary"><i class="fa fa-refresh"></i></button>
+                                </a>
+                            </div>
+                            <div class="btn-group select">
+                                <button data-toggle="dropdown" class="btn btn-primary btn-sm dropdown-toggle">
+                                    <span style="width: 70px;" class="dropdown-label">筛选</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu text-left text-sm">
+                                    <li><a href="{{ url_for('mail.filter_read') }}">已读邮件</a></li>
+                                    <li><a href="{{ url_for('mail.filter_unread') }}">未读邮件</a></li>
+                                    <li><a href="{{ url_for('mail.filter_important') }}">重要邮件</a></li>
+                                    <li><a href="{{ url_for('mail.filter_regular') }}">普通邮件</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </header>
+
+                    <section class="mail-list">
+                        <ul class="list-group ">
+                            {% for email in emails%}
+                            <li class="list-group-item">
+                                <span class="pull-left chk">
+                                    <input type="checkbox"/>
+                                </span>
+                                <a class="thumb pull-left" href="#"> <img src="../static/img/baoan.png"> </a>
+                                <a class="" href="{{ url_for('mail.mail_view', mail_id=email.id) }}"> <small class="pull-right text-muted">{{ email.create_time }}</small>来自 <strong>{{ email.sender.name }}</strong>  <span>主题: <strong>{{ email.title }}</strong> </span> </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </section>
+
+                </section>
+            </div>
+
+        </div>
+{% endblock %}

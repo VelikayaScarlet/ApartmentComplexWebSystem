@@ -1,0 +1,38 @@
+.index-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.index-carousel {
+  display: flex;
+  align-items: center;
+}
+
+.index-person {
+  margin: 0 20px;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.index-person img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.index-person h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #333333;
+}
+
+.index-person p {
+  margin: 0;
+  font-size: 14px;
+  color: #777777;
+}

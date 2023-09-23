@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}新增住户{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <h3>新增住户</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <header class="panel-heading">
+                你在看着他们，老大哥在看着你
+                <span class="tools pull-right">
+                    <a href="javascript:" class="fa fa-chevron-down"></a>
+                    <a href="javascript:" class="fa fa-times"></a>
+                </span>
+            </header>
+                <br>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" method="post">
+                            <div class="form-group">
+                                <label for="inputName" class="col-lg-2 col-sm-2 control-label">住户姓名</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="inputName" placeholder="填写姓名" name="name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPN" class="col-lg-2 col-sm-2 control-label">住户电话</label>
+                                <div class="col-lg-10">
+                                    <input type="number" class="form-control" id="inputPN" placeholder="填写电话" name="phone_num" required>
+                                    <!--<p class="help-block">Example block-level help text here.</p>-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputWP" class="col-lg-2 col-sm-2 control-label">工作单位</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="inputWP" placeholder="填写工作单位" name="workplace" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputUnit" class="col-lg-2 col-sm-2 control-label">居住单元</label>
+                                <div class="col-lg-10">
+                                    <input id="inputBuilding" type="number" list="appNamelist" name="building" style="padding:0.5em;border-radius:10px;" required> 栋
+                                    <input id="inputRoom" type="number" list="appNamelist" name="room" style="padding:0.5em;border-radius:10px;" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">是否为户主</label>
+                                <div class="col-lg-10">
+                            <div>
+                              <input type="radio" name="is_holder" id="yes" value="1">
+                              <label for="yes">是</label>
+                              <input type="radio"  name="is_holder" id="no" checked value="0">
+                              <label for="no" >否</label>
+                            </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="submit" class="btn btn-primary" id="submitBtn">提交(先收集人脸信息才能点击)</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button id="collect_photos" class="btn btn-danger btn-lg" >
+                                        <a href="{{ url_for('collect.resident_photos') }}">收集人脸信息</a>
+                                         <i class="fa fa-info-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                {% if error_msg == 'ok' %}
+                                <p class="msg">{{ msg }}</p>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 获取url中的参数值
+function getParameterByName(name) {
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(window.location.href);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+// 获取msg的值
+var msg = getParameterByName('msg');
+
+// 判断msg的值是否为'ok'，如果是则解除按钮的disabled状态
+document.getElementById('submitBtn').disabled = msg !== 'ok';
+</script>
+
+
+{% endblock %}

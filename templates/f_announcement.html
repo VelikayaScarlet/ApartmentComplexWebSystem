@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}历史通知{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <h3>历史通知</h3>
+    {% for a in announcement %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <header class="panel-heading">
+                    {{ a.title }}
+                    {{ a.create_time }}
+                    <span class="tools pull-right">
+                        <a href="javascript:" class="fa fa-chevron-down"></a>
+                        <a href="javascript:" class="fa fa-times"></a>
+                    </span>
+                </header>
+                    <div class="panel-body">
+                        <h5>{{ a.content|safe }}</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

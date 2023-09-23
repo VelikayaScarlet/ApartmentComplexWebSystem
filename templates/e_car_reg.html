@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}临时车辆登记{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="wrapper">
+    <h3>新增内部车辆</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <header class="panel-heading">
+                你在看着他们，老大哥在看着你
+                <span class="tools pull-right">
+                    <a href="javascript:" class="fa fa-chevron-down"></a>
+                    <a href="javascript:" class="fa fa-times"></a>
+                </span>
+            </header>
+            <br>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" method="post">
+                            <div class="form-group">
+                                <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">车辆牌照</label>
+                                <div class="col-lg-10">
+                                    <input type="text" id="inputEmail1" placeholder="自动生成牌照" name="vp" value="{{ vp }}" style="padding:0.5em;border-radius:10px;" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">所有者</label>
+                                <div class="col-lg-10">
+                                    <input id="appName" type="text" list="appNamelist" name="name" style="padding:0.5em;border-radius:10px;" required>
+                                        <datalist id="appNamelist">
+                                            {% for resident in residents %}
+                                            <option>{{ resident.name }}</option>
+                                            {% endfor %}
+                                        </datalist>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="submit" class="btn btn-primary">提交</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="error-msg" style="">{{ error_msg }}</p>
+                            </div>
+                        </form>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
